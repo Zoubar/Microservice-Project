@@ -1,0 +1,15 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        # Route definition for the CUSTOMER-SERVICE
+        - id: r1  # A unique identifier for this route.
+          uri: lb://CUSTOMER-SERVICE  # Load-balances requests to the service registered with the name CUSTOMER-SERVICE.
+          predicates:
+            - Path=/api/customers/**  # Specifies that this route matches incoming requests with paths starting with /api/customers/.
+
+        # Route definition for the INVENTORY-SERVICE
+        - id: r2  # A unique identifier for this route.
+          uri: lb://INVENTORY-SERVICE  # Load-balances requests to the service registered with the name INVENTORY-SERVICE.
+          predicates:
+            - Path=/api/products/**  # Specifies that this route matches incoming requests with paths starting with /api/products/**.
